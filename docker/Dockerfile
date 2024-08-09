@@ -1,13 +1,13 @@
-FROM php:8.1-fpm-alpine as base-system
+FROM php:8.2-fpm-alpine as base-system
 
 RUN apk add --no-cache \
     bash \
-    php81-zip \
+    php82-zip \
     libxml2-dev \
     libzip-dev \
     zip \
-    php81-gd \
-    php81-exif \
+    php82-gd \
+    php82-exif \
     libpng libpng-dev libjpeg-turbo libjpeg-turbo-dev freetype freetype-dev libwebp-dev zlib-dev libxpm-dev gd \
     git build-base librdkafka-dev make autoconf g++ libc-dev \
     && pecl install rdkafka \
@@ -16,3 +16,4 @@ RUN apk add --no-cache \
     && docker-php-ext-enable rdkafka
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
